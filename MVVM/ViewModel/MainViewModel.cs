@@ -34,13 +34,13 @@ namespace Tasker.MVVM.ViewModel
                 {
                     Id = 2,
                     CategoryName = "Amogus",
-                    Color = "#cf14df"
+                    Color = "#c0df"
                 },
                 new Category
                 {
                     Id = 3,
                     CategoryName = "Nine Eleven!",
-                    Color = "#cf14df"
+                    Color = "#2214ff"
                 },
             };
 
@@ -49,7 +49,7 @@ namespace Tasker.MVVM.ViewModel
                 new MyTask
                 {
                     TaskName = "Do the thing!",
-                    Completed = false,
+                    Completed = true,
                     CategoryID = 1,
                 },
                 new MyTask
@@ -61,11 +61,78 @@ namespace Tasker.MVVM.ViewModel
                 new MyTask
                 {
                     TaskName = "For this!",
-                    Completed = false,
+                    Completed = true,
                     CategoryID = 1,
                 },
+                new MyTask
+                {
+                    TaskName = "Sus!",
+                    Completed = false,
+                    CategoryID = 2,
+                },
+                new MyTask
+                {
+                    TaskName = "Sussy Baka!",
+                    Completed = false,
+                    CategoryID = 2,
+                },
+                new MyTask
+                {
+                    TaskName = "Amogus!",
+                    Completed = true,
+                    CategoryID = 2,
+                },
+                 new MyTask
+                {
+                    TaskName = "Osama Bin Ladin",
+                    Completed = true,
+                    CategoryID = 3,
+                },
+                 new MyTask
+                {
+                    TaskName = "Twin Towers",
+                    Completed = true,
+                    CategoryID = 3,
+                },
+                 new MyTask
+                {
+                    TaskName = "Airplane",
+                    Completed = true,
+                    CategoryID = 3,
+                }
             };
+
+            UpdateDate();
         }
 
+        private void UpdateDate()
+        {
+            foreach(var c in Categories)
+            {
+                var task = from t in Task
+                           where t.CategoryID == c.Id
+                           select t;
+
+                var completed = from t in task
+                                where t.Completed == true
+                                select t;
+
+                var notComplete = from t in task
+                                  where t.Completed == false
+                                  select t;
+
+                c.PendingTask = notComplete.Count();
+                c.Percentage = (float)completed.Count()/(float)task.Count();
+            }
+
+            foreach (var t in Task)
+            {
+                var catColor = 
+                    (from c in Categories
+                     where c.Id == t.CategoryID
+                     select c.Color).FirstOrDefault();
+                t.TaskColor = catColor;
+            }
+        }
     }
 }

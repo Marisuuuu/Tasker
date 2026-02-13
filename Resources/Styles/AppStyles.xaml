@@ -29,4 +29,10 @@
         <Setter Property="FontSize" Value="Medium"/>
         <Setter Property="VerticalOptions" Value="Center"/>
     </Style>
+
+    <Style TargetType="RoundRectangle">
+        <Setter Property="CornerRadius" Value="10"/>
+        <Setter Property="Fill" Value="LightBlue"/>
+        <Setter Property="WidthRequest" Value="200"/>
+    </Style>
 </ResourceDictionary>

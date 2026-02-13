@@ -15,9 +15,19 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Grid Padding="10">
+                            <RoundRectangle>
+                                <RoundRectangle.Shadow>
+                                    <Shadow Brush="#222222"
+                                            Opacity="0.2"
+                                            Radius="10"
+                                            Offset="8,7"/>
+                                </RoundRectangle.Shadow>
+                            </RoundRectangle>
                             <VerticalStackLayout Padding="15" Spacing="10">
+                                <Label StyleClass="LightBlue" Text="{Binding PendingTask, StringFormat='{0} Tasks'}"/>
                                 <Label StyleClass="DakBlue, CardTitle"
                                        Text="{Binding CategoryName}"/>
+                                <ProgressBar Progress="{Binding Percentage}" ProgressColor="{Binding Color}"/>
                             </VerticalStackLayout>
                         </Grid>
                     </DataTemplate>
