@@ -102,10 +102,10 @@ namespace Tasker.MVVM.ViewModel
                 }
             };
 
-            UpdateDate();
+            UpdateData();
         }
 
-        private void UpdateDate()
+        public void UpdateData()
         {
             foreach(var c in Categories)
             {
